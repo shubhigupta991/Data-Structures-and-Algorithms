@@ -31,5 +31,4 @@ arr.push('!')
 arr.pop()
 arr.get(1)
 arr.delete(0)
-print(arr)
 
