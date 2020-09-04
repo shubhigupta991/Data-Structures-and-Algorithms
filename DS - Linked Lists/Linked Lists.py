@@ -31,9 +31,9 @@ class LinkedList:
         new_node = Node(data)
         temp = self.head
         if index == 0:
-            self.append(data)
-        elif index >= self.length:
             self.prepend(data)
+        elif index >= self.length:
+            self.append(data)
         else:
             for i in range(0,self.length):
                 if i == index-1:
@@ -49,23 +49,51 @@ class LinkedList:
             print(temp.data)
             temp = temp.ptr
 
-    '''def reverse(self):
-        prev = None
-        self.tail = self.head
-        while self.head != None:
-            temp = self.head
+    def remove(self,index):
+        temp = self.head
+        if index == 0:
             self.head = self.head.ptr
-            temp.ptr = prev
-            prev = temp
-        self.head = temp'''
+        else:
+            for i in range(self.length):
+                if i == index-1:
+                    temp.ptr = temp.ptr.ptr
+                    break
+                temp = temp.ptr
+        self.length -= 1
 
+    def search(self,value):
+        temp = self.head
+        index = 0
+        while temp != None:
+            if temp.data == value:
+                return index
+            index += 1
+            temp = temp.ptr
+        else:
+            return 'Element not found'
+
+    def reverse(self):
+        previous = None
+        current = self.head
+        following = current.ptr
+        while current:
+            current.ptr = previous
+            previous = current
+            current = following
+            if following:
+                following = following.ptr
+        self.head = previous
 
 my_list = LinkedList()
-my_list.append(16)
-my_list.prepend(10)
-my_list.insert(5,1)
+my_list.append(10)
+my_list.append(5)
+my_list.append(6)
+my_list.prepend(1)
+my_list.insert(99,2)
+my_list.insert(23,34)
+my_list.remove(5)
+print(my_list.search(99))
+print(my_list.search(9))
 my_list.display()
 my_list.reverse()
-
-print(my_list.length)
-print(my_list.head.data,my_list.tail.data)
+my_list.display()
