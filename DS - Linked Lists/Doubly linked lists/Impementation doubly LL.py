@@ -7,6 +7,7 @@ class Node:
 class LinkedList:
     def __init__(self):
         self.head = None
+        self.tail = None
         self.length = 0
 
     def append(self,data):
@@ -17,11 +18,9 @@ class LinkedList:
             self.tail = self.head
             self.length = 1
         else:
-            while temp.next:
-                temp = temp.next
-            temp.next = new_node
-            new_node.prev = temp
-            self.length += 1
+            self.tail.next = new_node
+            new_node.prev = self.tail
+            self.tail = new_node
 
     def prepend(self,data):
         new_node = Node(data)
@@ -62,13 +61,12 @@ class LinkedList:
         if index == 0:
             self.head = self.head.next
             self.head.prev = None
+        elif index == self.length -1:
+            self.tail = self.tail.prev
+            self.tail.next = None
         else:
             for i in range(index):
-                if index == self.length -1 and i == index - 1:
-                    leader = temp
-                    leader.next.prev = None
-                    leader.next = None
-                elif i == index-1:
+                if i == index-1:
                     leader = temp
                     follower = temp.next.next
                     leader.next = follower
