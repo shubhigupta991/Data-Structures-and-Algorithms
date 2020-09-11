@@ -4,7 +4,7 @@ class Node:
         self.next = None
         self.prev = None
 
-class LinkedList:
+class DoublyLinkedList:
     def __init__(self):
         self.head = None
         self.tail = None
@@ -16,11 +16,11 @@ class LinkedList:
         if self.head == None:
             self.head = new_node
             self.tail = self.head
-            self.length = 1
         else:
             self.tail.next = new_node
             new_node.prev = self.tail
             self.tail = new_node
+        self.length += 1
 
     def prepend(self,data):
         new_node = Node(data)
@@ -65,7 +65,7 @@ class LinkedList:
             self.tail = self.tail.prev
             self.tail.next = None
         else:
-            for i in range(index):
+            for i in range(0,index):
                 if i == index-1:
                     leader = temp
                     follower = temp.next.next
@@ -97,7 +97,7 @@ class LinkedList:
         if temp is not None:
             self.head = temp.prev
 
-my_list = LinkedList()
+my_list = DoublyLinkedList()
 my_list.append(10)
 my_list.append(5)
 my_list.append(6)

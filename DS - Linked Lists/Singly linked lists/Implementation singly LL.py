@@ -1,7 +1,7 @@
 class Node:
     def __init__(self,data):
         self.data = data
-        self.ptr = None
+        self.next = None
 
 class LinkedList:
     def __init__(self):
@@ -11,18 +11,17 @@ class LinkedList:
 
     def append(self,data):
         new_node = Node(data)
-        temp = self.head
         if self.head == None:
             self.head = new_node
             self.tail = self.head
-            self.length = 1
         else:
-            self.tail.next = new_node
+            self.tail.next= new_node
             self.tail = new_node
+        self.length += 1
 
     def prepend(self,data):
         new_node = Node(data)
-        new_node.ptr = self.head
+        new_node.next = self.head
         self.head = new_node
         self.length += 1
 
@@ -37,17 +36,17 @@ class LinkedList:
         else:
             for i in range(0,index):
                 if i == index-1:
-                    new_node.ptr = temp.ptr
-                    temp.ptr = new_node
+                    new_node.next = temp.next
+                    temp.next = new_node
                     break
-                temp = temp.ptr
+                temp = temp.next
             self.length += 1
 
     def display(self):
         temp = self.head
         while temp != None:
             print(temp.data)
-            temp = temp.ptr
+            temp = temp.next
 
     def remove(self,index):
         temp = self.head
@@ -56,9 +55,11 @@ class LinkedList:
         else:
             for i in range(self.length):
                 if i == index-1:
-                    temp.ptr = temp.ptr.ptr
+                    temp.next = temp.next.next
+                    if index == self.length-1:
+                        self.tail = temp
                     break
-                temp = temp.ptr
+                temp = temp.next
         self.length -= 1
 
     def search(self,value):
@@ -68,20 +69,20 @@ class LinkedList:
             if temp.data == value:
                 return index
             index += 1
-            temp = temp.ptr
+            temp = temp.next
         else:
             return 'Element not found'
 
     def reverse(self):
         previous = None
         current = self.head
-        following = current.ptr
+        following = current.next
         while current:
-            current.ptr = previous
+            current.next = previous
             previous = current
             current = following
             if following:
-                following = following.ptr
+                following = following.next
         self.head = previous
 
 my_list = LinkedList()
