@@ -53,7 +53,7 @@ class LinkedList:
         if index == 0:
             self.head = self.head.ptr
         else:
-            for i in range(self.length):
+            for i in range(index):
                 if i == index-1:
                     temp.next = temp.next.next
                     if index == self.length-1:
