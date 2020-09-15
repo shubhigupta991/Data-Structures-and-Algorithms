@@ -90,7 +90,7 @@ class CircularLinkedLists:
             current.next = previous
             previous = current
             current = following
-            
+
         self.head.next = previous
         self.head = previous
 
