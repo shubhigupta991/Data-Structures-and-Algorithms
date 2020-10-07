@@ -20,9 +20,7 @@ def partition(array,left,right,pivot):
     return partitionIndex
 
 def swap(array,firstIndex,secondIndex):
-    temp = array[firstIndex]
-    array[firstIndex] = array[secondIndex]
-    array[secondIndex] = temp
+    array[firstIndex], array[secondIndex] = array[secondIndex], array[firstIndex]
 
 numbers = [48,21,30,5,99,60,36,12,78,56]
 sorted_array = quicksort(numbers,0,len(numbers)-1)
