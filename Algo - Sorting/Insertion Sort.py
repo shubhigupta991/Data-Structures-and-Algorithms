@@ -1,8 +1,8 @@
 def insertionSort(array):
     n = len(array)
     for i in range(n):
-        '''if array[i] > array[i+1]:
-            array[i], array[i+1] = array[i+1],array[i]'''
+        if array[i] > array[i+1]:
+            array[i], array[i+1] = array[i+1],array[i]
         for j in range(i,0,-1):
             if array[j] < array[j-1]:
                 array[j-1], array[j] = array[j], array[j-1]
