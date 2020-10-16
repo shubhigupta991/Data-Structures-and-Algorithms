@@ -159,6 +159,37 @@ def DFSInorder(root):
 
     return array
 
+
+def DFSPostorder(root):
+    stack = []
+    temp = root
+    array = []
+
+    def peek(stack):
+        if len(stack) > 0:
+            return stack[-1]
+        return None
+
+    while True:
+        while temp:
+            if temp.right != None:
+                stack.append(temp.right)
+            stack.append(temp)
+            temp = temp.left
+
+        temp = stack.pop()
+
+        if temp.right != None and peek(stack) == temp.right:
+            stack.pop()
+            stack.append(temp)
+            temp = temp.right
+        else:
+            array.append(temp.data)
+            temp = None
+        if len(stack) <= 0:
+            break
+    return array
+
 my_BST = BST()
 my_BST.insert(9)
 my_BST.insert(4)
@@ -171,4 +202,5 @@ print('Inorder(RE) : ',DFSInorderRe(my_BST.root,[]))
 print('Inorder : ',DFSInorder(my_BST.root))
 print('Preorder : ',DFSPreorder(my_BST.root))
 print('Preorder(RE) : ',DFSPreorderRe(my_BST.root,[]))
-print('Postorder : ',DFSPostorderRe(my_BST.root,[]))
+print('Postorder : ',DFSPostorder(my_BST.root))
+print('Postorder(RE) : ',DFSPostorderRe(my_BST.root,[]))
