@@ -101,28 +101,62 @@ class BST:
                         parent_node.right  = None
         return True
 
-def DFSInorder(node,array):
+def DFSInorderRe(node,array):
     if node.left:
-        DFSInorder(node.left,array)
+        DFSInorderRe(node.left,array)
     array.append(node.data)
     if node.right:
-        DFSInorder(node.right,array)
+        DFSInorderRe(node.right,array)
     return array
 
-def DFSPreorder(node,array):
+def DFSPreorderRe(node,array):
     array.append(node.data)
     if node.left:
-        DFSPreorder(node.left,array)
+        DFSPreorderRe(node.left,array)
     if node.right:
-        DFSPreorder(node.right,array)
+        DFSPreorderRe(node.right,array)
     return array
 
-def DFSPostorder(node,array):
+def DFSPostorderRe(node,array):
     if node.left:
-        DFSPostorder(node.left,array)
+        DFSPostorderRe(node.left,array)
     if node.right:
-        DFSPostorder(node.right,array)
+        DFSPostorderRe(node.right,array)
     array.append(node.data)
+    return array
+
+def DFSPreorder(root):
+    stack = []
+    temp = root
+    array = []
+    while temp != None:
+        array.append(temp.data)
+        if temp.right:
+            stack.append(temp.right)
+        if temp.left:
+            temp = temp.left
+        else:
+            if stack == []:
+                temp = None
+            else:
+                temp = stack.pop()
+    return array
+
+def DFSInorder(root):
+    stack = []
+    temp = root
+    array = []
+    while True:
+        if temp != None:
+            stack.append(temp)
+            temp = temp.left
+        elif stack:
+            temp = stack.pop()
+            array.append(temp.data)
+            temp = temp.right
+        else:
+            break
+
     return array
 
 my_BST = BST()
@@ -133,6 +167,8 @@ my_BST.insert(1)
 my_BST.insert(170)
 my_BST.insert(6)
 my_BST.insert(15)
-print('Inorder : ',DFSInorder(my_BST.root,[]))
-print('Preorder : ',DFSPreorder(my_BST.root,[]))
-print('Postorder : ',DFSPostorder(my_BST.root,[]))
+print('Inorder(RE) : ',DFSInorderRe(my_BST.root,[]))
+print('Inorder : ',DFSInorder(my_BST.root))
+print('Preorder : ',DFSPreorder(my_BST.root))
+print('Preorder(RE) : ',DFSPreorderRe(my_BST.root,[]))
+print('Postorder : ',DFSPostorderRe(my_BST.root,[]))

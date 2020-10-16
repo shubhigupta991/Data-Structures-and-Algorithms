@@ -4,9 +4,13 @@ def DFSPreorder(root):
     array = []
     while temp != None:
         array.append(temp.data)
-        if root.right:
-            stack.append(root.right)
-        if root.left:
+        if temp.right:
+            stack.append(temp.right)
+        if temp.left:
             temp = root.left
         else:
-            temp = stack.pop()
+            if stack == []:
+                temp = None
+            else:
+                temp = stack.pop()
+    return array
