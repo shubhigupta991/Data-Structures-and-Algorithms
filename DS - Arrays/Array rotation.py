@@ -21,7 +21,7 @@ for i in range(T):
         print(a[j])
     print('')
     
-    def rotate(a, d):
+def rotate(a, d):
     for i in range(d):
         b = a.pop(0)
         a.append(b)
