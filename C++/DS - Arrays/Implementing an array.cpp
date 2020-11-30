@@ -1,4 +1,5 @@
 #include <iostream>
+#include <conio.h>
 #include <stdio.h>
 
 class Array
@@ -18,8 +19,16 @@ class Array
 
     void push(int value)
     {
-        arr[currLength] = value;
-        currLength++;
+        if (currLength == 100)
+        {
+            cout << 'Array is full.';
+        }
+        else
+        {
+            arr[currLength] = value;
+            currLength++;
+        }
+        
     }
 
     int pop()

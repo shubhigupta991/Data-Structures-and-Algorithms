@@ -40,7 +40,7 @@ class BST:
         return False
 
     def remove(self,value):
-        '''For this i function i follwed the right subtree smallest node approach, the other approch can be left subtree largest nde approach
+        '''For this function i follwed the right subtree smallest node approach, the other approch can be left subtree largest nde approach
             These are the two approaches for deleting the node having two subtrees'''
         if self.root == None:
             return False
