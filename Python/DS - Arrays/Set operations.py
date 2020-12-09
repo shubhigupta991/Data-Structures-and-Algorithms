@@ -57,6 +57,32 @@ def sorted_intersection(array1,array2):
             j += 1
     return intersection_array
 
+def difference(array1,array2):
+    # if the arrays are not sorted                     complexity = m*n = O(n^2)
+    difference_array = []
+    for element in array1:
+        if element not in array2:
+            difference_array.append(element)
+    return difference_array
+
+def sorted_difference(array1,array2):
+    # if the arrays are sorted                        complexity = m + n = O(n)
+    difference_array = []
+    i = 0
+    j = 0
+    while i < len(array1) and j < len(array2):
+        if array1[i] < array2[j]:
+            difference_array.append(array1[i])
+            i += 1
+        elif array1[i] > array2[j]:
+            j += 1
+        elif array1[i] == array2[j]:
+            i += 1
+            j += 1
+    return difference_array
+
+# set membership is same as seraching
+
 arr1 = [3,5,10,4,6]
 arr2 = [12,4,7,2,5]
 arr3 = [3,4,5,6,10]
@@ -66,3 +92,5 @@ print(union(arr1,arr2))
 print(intersection(arr1,arr2))
 print(sorted_union(arr3,arr4))
 print(sorted_intersection(arr3,arr4))
+print(difference(arr1,arr2))
+print(sorted_difference(arr3,arr4))
