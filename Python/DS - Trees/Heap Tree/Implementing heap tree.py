@@ -83,7 +83,11 @@ class Heap2:
         :param array: set of values to create heap.
         '''
         self.data = array
-        for i in range(1, len(array)):
+        self.currentLength = len(array)
+        self.createHeap()
+
+    def createHeap(self):
+        for i in range(1, self.currentLength):
             currentNode = i+1
             parentNode = currentNode // 2
             indexOfCurrentNode = currentNode - 1
@@ -94,8 +98,12 @@ class Heap2:
                 parentNode = currentNode // 2
                 indexOfCurrentNode = currentNode - 1
                 indexOfParentNode = parentNode - 1
-                if indexOfCurrentNode == 0:
-                    return
+                if indexOfCurrentNode <= 0:
+                    break
+
+
+
+
 
 
 myHeap = Heap()
@@ -116,4 +124,5 @@ print(myHeap.data)
 print("Deleted Element : ",myHeap.delete())
 print(myHeap.data)
 print(myHeap.currentLength)
-myHeap2 = 
+myHeap2 = Heap2([10,20,30,25,5,40,35])
+print(myHeap2.data)
