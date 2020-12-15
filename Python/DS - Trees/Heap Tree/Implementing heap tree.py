@@ -10,11 +10,19 @@ Min Heap
 Here I am implementing Max heap
 '''
 class Heap():
+    '''
+    This class creates heap from the values given individually.
+    '''
     def __init__(self):
         self.data = []
         self.currentLength = 0
 
     def insert(self,value):
+        '''
+        To add value in a heap.
+        :param value: the data that's need to be inserted
+        :return: None (as it is an inplace insertion)
+        '''
         self.data.append(value)
         self.currentLength += 1
         currentNode = self.currentLength
@@ -31,10 +39,14 @@ class Heap():
                 return
 
     def delete(self):
+        '''
+        In a heap the only node that can be deleted is the root node.
+        :return: deletedItem
+        '''
         deletedElement = self.data[0]
         self.data[0] = self.data[self.currentLength - 1]
         del self.data[self.currentLength - 1]
-        self.currentLength -= 1
+        self.currentLength -=1
         currentNode = 1
         leftChild = 2 * currentNode
         rightChild = 2 * currentNode + 1
@@ -58,20 +70,50 @@ class Heap():
                 indexOfCurrentNode = currentNode - 1
                 indexOfLeftChild = leftChild - 1
                 indexOfRightChild = rightChild - 1
-
-            if currentNode == self.currentLength or leftChild == self.currentLength or rightChild == self.currentLength:
+            if currentNode >= self.currentLength or leftChild >= self.currentLength or rightChild >= self.currentLength:
                 return deletedElement
+
+class Heap2:
+    '''
+    This class helps create heap when given array of values
+    '''
+    def __init__(self,array):
+        '''
+        constructor to create desired heap
+        :param array: set of values to create heap.
+        '''
+        self.data = array
+        for i in range(1, len(array)):
+            currentNode = i+1
+            parentNode = currentNode // 2
+            indexOfCurrentNode = currentNode - 1
+            indexOfParentNode = parentNode - 1
+            while self.data[indexOfCurrentNode] > self.data[indexOfParentNode]:
+                self.data[indexOfParentNode], self.data[indexOfCurrentNode] = self.data[indexOfCurrentNode], self.data[indexOfParentNode]
+                currentNode = parentNode
+                parentNode = currentNode // 2
+                indexOfCurrentNode = currentNode - 1
+                indexOfParentNode = parentNode - 1
+                if indexOfCurrentNode == 0:
+                    return
 
 
 myHeap = Heap()
 myHeap.insert(30)
-myHeap.insert(5)
-myHeap.insert(6)
-myHeap.insert(10)
 myHeap.insert(20)
-myHeap.insert(1)
-myHeap.insert(9)
+myHeap.insert(15)
+myHeap.insert(5)
+myHeap.insert(10)
+myHeap.insert(12)
+myHeap.insert(6)
+print(myHeap.data)
 myHeap.insert(40)
 print(myHeap.data)
-print(myHeap.delete())
+myHeap.insert(35)
 print(myHeap.data)
+myHeap.insert(50)
+print(myHeap.data)
+print("Deleted Element : ",myHeap.delete())
+print(myHeap.data)
+print(myHeap.currentLength)
+myHeap2 = 
