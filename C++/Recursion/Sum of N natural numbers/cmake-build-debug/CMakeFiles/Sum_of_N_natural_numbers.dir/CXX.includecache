@@ -1,0 +1,12 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/shubhangigupta/Documents/GitHub/Data-Structures-and-Algorithms/C++/Recursion/Sum of N natural numbers/main.cpp
+iostream
+/Users/shubhangigupta/Documents/GitHub/Data-Structures-and-Algorithms/C++/Recursion/Sum of N natural numbers/iostream
+
