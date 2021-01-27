@@ -2,15 +2,15 @@
 using namespace std;
 
 float power(int x,int n) {
-    if (n == 0) {
-        return 1;
+    if (n == 1) {
+        return x;
     }
     else
         return power(x,n-1) * x;
 }
 
 float fact(int x) {
-    if (x == 0) {
+    if (x == 1) {
         return 1;
     }
     else
@@ -26,5 +26,5 @@ float taylor(int x, int n) {
 }
 
 int main() {
-    cout << "Taylor Series : " << taylor(4,5);
+    cout << "Taylor Series : " << taylor(4,15);
 }
