@@ -106,7 +106,24 @@ public:
         return (float) Sum()/length;
     }
 
+    void Reverse() {
+        int *B;
+        int i,j;
+        B = (int*)malloc(length*sizeof(int));
+        for(i = length - 1, j = 0; i >= 0; i--,j++)
+            B[j] = A[i];
 
+        for(i = 0; i < length; i++)
+            A[i] = B[i];
+    }
+
+    void Reverse2() {
+        int i,j;
+        for(i = 0, j = length - 1; j >= 0; j--,i++)
+            A[i] = A[j];
+    }
+
+    
 };
 
 
