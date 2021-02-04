@@ -1,0 +1,12 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/shubhangigupta/Documents/GitHub/Data-Structures-and-Algorithms/C++/Arrays/Implementation/main.cpp
+iostream
+-
+

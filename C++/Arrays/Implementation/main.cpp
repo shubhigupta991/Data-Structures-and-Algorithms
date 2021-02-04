@@ -6,6 +6,7 @@ private:
     int *A;
     int size;
     int length;
+
 public:
     Array() {
         size = 10;
@@ -123,11 +124,112 @@ public:
             A[i] = A[j];
     }
 
-    
+    void InsertSort(int x) {
+        int i = length-1;
+        if( length== size)
+            return;
+        while(i>=0 &&  A[i]>x)
+        {
+            A[i+1]= A[i];
+            i--;
+        }
+        A[i+1]=x;
+        length++;
+    }
+
+    int isSorted() {
+        for(int i = 0; i < length; i++){
+            if (A[i] > A[i+1])
+                return 0;
+        }
+        return 1;
+    }
+
+    Array * Merge(Array arr2) {
+        int i,j,k;
+        i = j = k = 0;
+
+        Array *arr3 = new Array(length + arr2.length);
+        while (i < length && j < arr2.length) {
+            if(A[i]<arr2.A[j])
+                arr3->A[k++]=A[i++];
+            else
+                arr3->A[k++]=arr2.A[j++];
+        }
+
+        for(;i<length;i++)
+            arr3->A[k++]=A[i];
+        for(;j<arr2.length;j++)
+            arr3->A[k++]=arr2.A[j];
+
+        arr3->length = k;
+        return arr3;
+    }
+
+    Array * Union(Array arr2) {
+        int i,j,k;
+        i = j = k = 0;
+
+        Array *arr3 = new Array();
+        while (i < length && j < arr2.length) {
+            if(A[i] < arr2.A[j])
+                arr3->A[k++] = A[i++];
+            else if(A[i] > arr2.A[j])
+                arr3->A[k++] = arr2.A[j++];
+            else {
+                arr3->A[k++] = A[i++];
+                j++;
+            }
+
+            for(;i<length;i++)
+                arr3->A[k++]=A[i];
+            for(;j<arr2.length;j++)
+                arr3->A[k++]=arr2.A[j];
+
+            arr3->length = k;
+            return arr3;
+        }
+    }
+
+    Array * Intersection(Array arr2) {
+        int i, j, k;
+        i = j = k = 0;
+
+        Array *arr3 = new Array();
+        if (A[i] == arr2.A[j]) {
+            arr3->A[k++] = arr3->A[i++];
+            j++;
+        }
+
+        arr3->length = k;
+        return arr3;
+    }
+
+    Array * Diff(Array arr2) {
+        int i, j, k;
+        i = j = k = 0;
+
+        Array *arr3 = new Array();
+        if (A[i] == arr2.A[j])
+            j++;
+        else {
+            arr3->A[k++] = A[i++];
+            j++;
+        }
+    }
+
 };
 
 
 int main() {
-    std::cout << "Hello, World!" << std::endl;
+    Array arr1;
+
+    arr1.Append(1);
+    arr1.Append(5);
+    arr1.Insert(1,3);
+    arr1.Display();
+    arr1.Reverse();
+    arr1.Display();
+    cout << "Hello";
     return 0;
 }
