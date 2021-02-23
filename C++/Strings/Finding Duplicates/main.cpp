@@ -10,10 +10,7 @@ void duplicates1(char *S) {
     }
 }
 void duplicates2(char *S) {
-    int H[26];
-    for(int i = 0; i < 26; i++)
-        H[i] = 0;
-
+    int H[26] = {0};
     for(int i = 0; S[i] != '\0'; i++)
         H[S[i] - 97] += 1;
 
